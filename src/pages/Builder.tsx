@@ -610,72 +610,78 @@ case 5:
     </div>
   );
 
-      case 6:
-        return (
-          <div className="space-y-6">
-            <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-bold text-foreground">Projects & Certifications</h2>
-              <Button onClick={addProject} size="sm">
-                <Plus className="w-4 h-4 mr-2" /> Add Project
+case 6:
+  return (
+    <div className="space-y-6">
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold text-foreground">Projects & Certifications</h2>
+        <Button onClick={addProject} size="sm">
+          <Plus className="w-4 h-4 mr-2" /> Add Project
+        </Button>
+      </div>
+      {resumeData.projects.map((proj) => (
+        <Card key={proj.id} className="p-6 bg-card/50 backdrop-blur">
+          <div className="space-y-4">
+            <div className="flex justify-between items-start">
+              <h3 className="font-semibold text-lg text-foreground">Project</h3>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => removeProject(proj.id)}
+              >
+                <Trash2 className="w-4 h-4 text-destructive" />
               </Button>
             </div>
-            {resumeData.projects.map((proj) => (
-              <Card key={proj.id} className="p-6 bg-card/50 backdrop-blur">
-                <div className="space-y-4">
-                  <div className="flex justify-between items-start">
-                    <h3 className="font-semibold text-lg text-foreground">Project</h3>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => removeProject(proj.id)}
-                    >
-                      <Trash2 className="w-4 h-4 text-destructive" />
-                    </Button>
-                  </div>
-                  <div>
-                    <Label>Project Title</Label>
-                    <Input
-                      value={proj.title}
-                      onChange={(e) => updateProject(proj.id, 'title', e.target.value)}
-                      placeholder="Project Name"
-                    />
-                  </div>
-                  <div>
-                    <Label>Description</Label>
-                    <Textarea
-                      value={proj.description}
-                      onChange={(e) => updateProject(proj.id, 'description', e.target.value)}
-                      placeholder="Describe the project..."
-                      rows={3}
-                    />
-                  </div>
-                </div>
-              </Card>
-            ))}
-            <div className="mt-6">
-              <Label>Certifications</Label>
+            <div>
+              <Label>Project Title</Label>
               <Input
-                value={resumeData.certifications.join(', ')}
-                onChange={(e) => setResumeData({
-                  ...resumeData,
-                  certifications: e.target.value.split(',').map(s => s.trim()).filter(Boolean)
-                })}
-                placeholder="AWS Certified, Google Cloud Professional"
+                value={proj.title}
+                onChange={(e) => updateProject(proj.id, 'title', e.target.value)}
+                placeholder="Project Name"
               />
             </div>
             <div>
-              <Label>Relevant Coursework</Label>
-              <Input
-                value={resumeData.coursework.join(', ')}
-                onChange={(e) => setResumeData({
-                  ...resumeData,
-                  coursework: e.target.value.split(',').map(s => s.trim()).filter(Boolean)
-                })}
-                placeholder="Data Structures, Machine Learning, Web Development"
+              <Label>Description</Label>
+              <Textarea
+                value={proj.description}
+                onChange={(e) => updateProject(proj.id, 'description', e.target.value)}
+                placeholder="Describe the project..."
+                rows={3}
               />
             </div>
           </div>
-        );
+        </Card>
+      ))}
+      <div className="mt-6">
+        <Label>Certifications</Label>
+        <Input
+          value={resumeData.certifications}
+          onChange={(e) => setResumeData({
+            ...resumeData,
+            certifications: e.target.value
+          })}
+          placeholder="AWS Certified, Google Cloud Professional, CompTIA Security+"
+        />
+        <p className="text-xs text-muted-foreground mt-1">
+          Separate multiple certifications with commas
+        </p>
+      </div>
+      <div>
+        <Label>Relevant Coursework</Label>
+        <Input
+          value={resumeData.coursework}
+          onChange={(e) => setResumeData({
+            ...resumeData,
+            coursework: e.target.value
+          })}
+          placeholder="Data Structures, Machine Learning, Web Development, Database Systems"
+        />
+        <p className="text-xs text-muted-foreground mt-1">
+          Separate multiple courses with commas
+        </p>
+      </div>
+    </div>
+  );
 
       default:
         return null;

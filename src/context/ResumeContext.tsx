@@ -21,8 +21,8 @@ const initialResumeData: ResumeData = {
     other: '',
   },
   projects: [],
-  certifications: [],
-  coursework: [],
+  certifications:'' ,
+  coursework: '',
 };
 
 interface ResumeContextType {

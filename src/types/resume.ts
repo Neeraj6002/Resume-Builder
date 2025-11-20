@@ -52,8 +52,8 @@ export interface ResumeData {
     other?: string;
   };
   projects: Project[];
-  certifications: string[];
-  coursework: string[];
+  certifications: string;  // Changed from string[] to string
+  coursework: string;      // Changed from string[] to string
 }
 
 export const MONTHS = [

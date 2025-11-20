@@ -4,7 +4,6 @@ interface Template1Props {
   data: ResumeData;
 }
 
-
 export default function Template1({ data }: Template1Props) {
   const formatDate = (date: any, isPresent: boolean) => {
     if (isPresent) return 'Present';
@@ -18,9 +17,9 @@ export default function Template1({ data }: Template1Props) {
       className="bg-white text-black"
       style={{
         fontFamily: 'Arial, Helvetica, sans-serif',
-        width: '794px',           // Exact A4 width @96dpi
-        minHeight: '1123px',      // Exact A4 height @96dpi
-        padding: '56px 64px',     // Clean, balanced margins
+        width: '794px',
+        minHeight: '1123px',
+        padding: '56px 64px',
         boxSizing: 'border-box',
         display: 'flex',
         flexDirection: 'column',
@@ -72,14 +71,10 @@ export default function Template1({ data }: Template1Props) {
       )}
 
       {/* Relevant Coursework */}
-      {data.coursework?.length > 0 && data.coursework.some(c => c?.trim()) && (
+      {data.coursework && data.coursework.trim() && (
         <section className="mb-8">
           <h2 className="text-lg font-bold uppercase border-b-2 border-black pb-2 mb-3">Relevant Coursework</h2>
-          <div className="grid grid-cols-3 gap-3 text-sm">
-            {data.coursework.filter(c => c?.trim()).map((course, i) => (
-              <div key={i}>• {course}</div>
-            ))}
-          </div>
+          <p className="text-sm leading-relaxed">{data.coursework}</p>
         </section>
       )}
 
@@ -111,52 +106,39 @@ export default function Template1({ data }: Template1Props) {
         </section>
       )}
 
-
-
-{/* Technical Skills */}
-{(() => {
-  const getSkillString = (skill: any): string => {
-    if (typeof skill === 'string') return skill;
-    if (Array.isArray(skill)) return (skill as string[]).join(', ');
-    return '';
-  };
-  
-  const languages = getSkillString(data.skills.languages);
-  const frameworks = getSkillString(data.skills.frameworks);
-  const tools = getSkillString(data.skills.tools);
-  
-  const hasSkills = languages.trim() !== '' || frameworks.trim() !== '' || tools.trim() !== '';
-  
-  return hasSkills && (
-    <section className="mb-8">
-      <h2 className="text-lg font-bold uppercase border-b-2 border-black pb-2 mb-3">
-        Technical Skills
-      </h2>
-
-      <div className="text-sm space-y-1">
-        {languages.trim() !== '' && (
-          <p>
-            <span className="font-bold">Languages:</span> {languages}
-          </p>
-        )}
-
-        {frameworks.trim() !== '' && (
-          <p>
-            <span className="font-bold">Frameworks:</span> {frameworks}
-          </p>
-        )}
-
-        {tools.trim() !== '' && (
-          <p>
-            <span className="font-bold">Developer Tools:</span> {tools}
-          </p>
-        )}
-      </div>
-    </section>
-  );
-})()}
-
-
+      {/* Technical Skills */}
+      {(() => {
+        const languages = data.skills.languages?.trim() || '';
+        const frameworks = data.skills.frameworks?.trim() || '';
+        const tools = data.skills.tools?.trim() || '';
+        
+        const hasSkills = languages !== '' || frameworks !== '' || tools !== '';
+        
+        return hasSkills && (
+          <section className="mb-8">
+            <h2 className="text-lg font-bold uppercase border-b-2 border-black pb-2 mb-3">
+              Technical Skills
+            </h2>
+            <div className="text-sm space-y-1">
+              {languages !== '' && (
+                <p>
+                  <span className="font-bold">Languages:</span> {languages}
+                </p>
+              )}
+              {frameworks !== '' && (
+                <p>
+                  <span className="font-bold">Frameworks:</span> {frameworks}
+                </p>
+              )}
+              {tools !== '' && (
+                <p>
+                  <span className="font-bold">Developer Tools:</span> {tools}
+                </p>
+              )}
+            </div>
+          </section>
+        );
+      })()}
 
       {/* Projects */}
       {data.projects.length > 0 && (
@@ -177,14 +159,10 @@ export default function Template1({ data }: Template1Props) {
       )}
 
       {/* Certifications */}
-      {data.certifications?.length > 0 && data.certifications.some(c => c?.trim()) && (
+      {data.certifications && data.certifications.trim() && (
         <section>
           <h2 className="text-lg font-bold uppercase border-b-2 border-black pb-2 mb-3">Certifications</h2>
-          <div className="text-sm space-y-1">
-            {data.certifications.filter(c => c?.trim()).map((cert, i) => (
-              <p key={i}>• {cert}</p>
-            ))}
-          </div>
+          <p className="text-sm leading-relaxed">{data.certifications}</p>
         </section>
       )}
     </div>

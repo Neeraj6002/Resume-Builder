@@ -6,7 +6,7 @@ interface Template5Props {
 
 export default function Template5({ data }: Template5Props) {
   const formatDate = (date: any, isPresent: boolean) => {
-  if (isPresent) return 'Present';
+    if (isPresent) return 'Present';
     if (!date || !date.month || !date.year) return '';
     return `${date.month} ${date.year}`;
   };
@@ -17,11 +17,11 @@ export default function Template5({ data }: Template5Props) {
       className="bg-white text-black flex"
       style={{
         fontFamily: "'Calibri', 'Arial', sans-serif",
-        width: '794px',           // Exact A4 width
-        minHeight: '1123px',      // Exact A4 height
+        width: '794px',
+        minHeight: '1123px',
         boxSizing: 'border-box',
         display: 'flex',
-        overflow: 'hidden',       // Prevent any overflow
+        overflow: 'hidden',
       }}
     >
       {/* Left Sidebar */}
@@ -44,60 +44,46 @@ export default function Template5({ data }: Template5Props) {
           </div>
         </div>
 
- {/* Technical Skills */}
-{(() => {
-  const getSkillString = (skill: any): string => {
-    if (typeof skill === 'string') return skill;
-    if (Array.isArray(skill)) return (skill as string[]).join(', ');
-    return '';
-  };
-  
-  const languages = getSkillString(data.skills.languages);
-  const frameworks = getSkillString(data.skills.frameworks);
-  const tools = getSkillString(data.skills.tools);
-  
-  const hasSkills = languages.trim() !== '' || frameworks.trim() !== '' || tools.trim() !== '';
-  
-  return hasSkills && (
-    <section className="mb-8">
-      <h2 className="text-lg font-bold uppercase border-b-2 border-black pb-2 mb-3">
-        Technical Skills
-      </h2>
+        {/* Technical Skills */}
+        {(() => {
+          const languages = data.skills.languages?.trim() || '';
+          const frameworks = data.skills.frameworks?.trim() || '';
+          const tools = data.skills.tools?.trim() || '';
+          
+          const hasSkills = languages !== '' || frameworks !== '' || tools !== '';
+          
+          return hasSkills && (
+            <div className="mb-8">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-cyan-200 mb-3">Skills</h3>
+              <div className="text-xs space-y-2">
+                {languages !== '' && (
+                  <div>
+                    <p className="font-semibold text-cyan-100">Languages</p>
+                    <p className="text-cyan-50">{languages}</p>
+                  </div>
+                )}
+                {frameworks !== '' && (
+                  <div>
+                    <p className="font-semibold text-cyan-100">Frameworks</p>
+                    <p className="text-cyan-50">{frameworks}</p>
+                  </div>
+                )}
+                {tools !== '' && (
+                  <div>
+                    <p className="font-semibold text-cyan-100">Tools</p>
+                    <p className="text-cyan-50">{tools}</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })()}
 
-      <div className="text-sm space-y-1">
-        {languages.trim() !== '' && (
-          <p>
-            <span className="font-bold">Languages:</span> {languages}
-          </p>
-        )}
-
-        {frameworks.trim() !== '' && (
-          <p>
-            <span className="font-bold">Frameworks:</span> {frameworks}
-          </p>
-        )}
-
-        {tools.trim() !== '' && (
-          <p>
-            <span className="font-bold">Developer Tools:</span> {tools}
-          </p>
-        )}
-      </div>
-    </section>
-  );
-})()}
         {/* Coursework */}
-        {data.coursework?.length > 0 && data.coursework.some(c => c?.trim()) && (
+        {data.coursework && data.coursework.trim() && (
           <div>
             <h3 className="text-sm font-bold uppercase tracking-wider text-cyan-200 mb-3">Coursework</h3>
-            <ul className="space-y-1.5 text-xs">
-              {data.coursework
-                .filter(c => c?.trim())
-                .slice(0, 6)
-                .map((course, i) => (
-                  <li key={i}>• {course}</li>
-                ))}
-            </ul>
+            <p className="text-xs leading-relaxed text-cyan-50">{data.coursework}</p>
           </div>
         )}
       </aside>
@@ -120,7 +106,7 @@ export default function Template5({ data }: Template5Props) {
             <h2 className="text-xl font-bold text-cyan-900 border-b-4 border-cyan-900 pb-2 mb-4 uppercase tracking-wider">
               Experience
             </h2>
-            {data.experience.map((exp, i) => (
+            {data.experience.map((exp) => (
               <div key={exp.id} className="mb-6 last:mb-0">
                 <div className="flex justify-between items-start mb-2">
                   <div>
@@ -193,16 +179,12 @@ export default function Template5({ data }: Template5Props) {
         )}
 
         {/* Certifications */}
-        {data.certifications?.length > 0 && data.certifications.some(c => c?.trim()) && (
+        {data.certifications && data.certifications.trim() && (
           <section>
             <h2 className="text-xl font-bold text-cyan-900 border-b-4 border-cyan-900 pb-2 mb-4 uppercase tracking-wider">
               Certifications
             </h2>
-            <ul className="space-y-1.5">
-              {data.certifications.filter(c => c?.trim()).map((cert, i) => (
-                <li key={i} className="text-xs text-gray-700">• {cert}</li>
-              ))}
-            </ul>
+            <p className="text-sm leading-relaxed text-gray-700">{data.certifications}</p>
           </section>
         )}
       </main>

@@ -17,11 +17,10 @@ export default function Template2({ data }: Template2Props) {
       className="bg-white text-black"
       style={{
         fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
-        width: '794px',      // A4 width at 96dpi
-        minHeight: '1123px', // A4 height at 96dpi
-        padding: '48px 56px', // comfortable readable margins
+        width: '794px',
+        minHeight: '1123px',
+        padding: '48px 56px',
         boxSizing: 'border-box',
-        // Remove any extra space after the content
         display: 'flex',
         flexDirection: 'column',
       }}
@@ -118,52 +117,53 @@ export default function Template2({ data }: Template2Props) {
         </section>
       )}
 
-{/* Technical Skills */}
-{(() => {
-  const getSkillString = (skill: any): string => {
-    if (typeof skill === 'string') return skill;
-    if (Array.isArray(skill)) return (skill as string[]).join(', ');
-    return '';
-  };
-  
-  const languages = getSkillString(data.skills.languages);
-  const frameworks = getSkillString(data.skills.frameworks);
-  const tools = getSkillString(data.skills.tools);
-  
-  const hasSkills = languages.trim() !== '' || frameworks.trim() !== '' || tools.trim() !== '';
-  
-  return hasSkills && (
-    <section className="mb-8">
-      <h2 className="text-lg font-bold uppercase border-b-2 border-black pb-2 mb-3">
-        Technical Skills
-      </h2>
+      {/* Relevant Coursework */}
+      {data.coursework && data.coursework.trim() && (
+        <section className="mb-8">
+          <h2 className="text-xs font-bold uppercase tracking-wider text-gray-800 mb-2 pb-1 border-b border-gray-300">
+            Relevant Coursework
+          </h2>
+          <p className="text-sm leading-relaxed text-gray-700">{data.coursework}</p>
+        </section>
+      )}
 
-      <div className="text-sm space-y-1">
-        {languages.trim() !== '' && (
-          <p>
-            <span className="font-bold">Languages:</span> {languages}
-          </p>
-        )}
-
-        {frameworks.trim() !== '' && (
-          <p>
-            <span className="font-bold">Frameworks:</span> {frameworks}
-          </p>
-        )}
-
-        {tools.trim() !== '' && (
-          <p>
-            <span className="font-bold">Developer Tools:</span> {tools}
-          </p>
-        )}
-      </div>
-    </section>
-  );
-})()}
+      {/* Technical Skills */}
+      {(() => {
+        const languages = data.skills.languages?.trim() || '';
+        const frameworks = data.skills.frameworks?.trim() || '';
+        const tools = data.skills.tools?.trim() || '';
+        
+        const hasSkills = languages !== '' || frameworks !== '' || tools !== '';
+        
+        return hasSkills && (
+          <section className="mb-8">
+            <h2 className="text-xs font-bold uppercase tracking-wider text-gray-800 mb-3 pb-1 border-b border-gray-300">
+              Technical Skills
+            </h2>
+            <div className="text-sm space-y-1">
+              {languages !== '' && (
+                <p>
+                  <span className="font-semibold">Languages:</span> {languages}
+                </p>
+              )}
+              {frameworks !== '' && (
+                <p>
+                  <span className="font-semibold">Frameworks:</span> {frameworks}
+                </p>
+              )}
+              {tools !== '' && (
+                <p>
+                  <span className="font-semibold">Developer Tools:</span> {tools}
+                </p>
+              )}
+            </div>
+          </section>
+        );
+      })()}
 
       {/* Projects */}
       {data.projects.length > 0 && (
-        <section>
+        <section className="mb-8">
           <h2 className="text-xs font-bold uppercase tracking-wider text-gray-800 mb-3 pb-1 border-b border-gray-300">
             Projects
           </h2>
@@ -178,6 +178,16 @@ export default function Template2({ data }: Template2Props) {
               )}
             </div>
           ))}
+        </section>
+      )}
+
+      {/* Certifications */}
+      {data.certifications && data.certifications.trim() && (
+        <section>
+          <h2 className="text-xs font-bold uppercase tracking-wider text-gray-800 mb-2 pb-1 border-b border-gray-300">
+            Certifications
+          </h2>
+          <p className="text-sm leading-relaxed text-gray-700">{data.certifications}</p>
         </section>
       )}
     </div>
