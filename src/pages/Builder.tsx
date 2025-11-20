@@ -893,9 +893,9 @@ case 6:
               <Button onClick={() => handleExport('pdf')} className="flex-1 bg-blue-600 hover:bg-blue-700">
                 <Download className="w-4 h-4 mr-2" /> Download PDF
               </Button>
-              <Button onClick={() => handleExport('docx')} variant="secondary" className="flex-1">
-                <FileText className="w-4 h-4 mr-2" /> Download DOC
-              </Button>
+ <Button onClick={() => handleExport('docx')} variant="secondary">
+  <FileText className="w-4 h-4 mr-2" /> Download DOC
+</Button>
               <Button onClick={() => handleExport('png')} variant="outline" className="flex-1">
                 <Download className="w-4 h-4 mr-2" /> Download PNG
               </Button>
