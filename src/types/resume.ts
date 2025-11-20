@@ -46,10 +46,10 @@ export interface ResumeData {
   education: Education[];
   experience: Experience[];
   skills: {
-    languages?: string[];
-    frameworks?: string[];
-    tools?: string[];
-    other?: string[];
+    languages?: string;
+    frameworks?: string;
+    tools?: string;
+    other?: string;
   };
   projects: Project[];
   certifications: string[];

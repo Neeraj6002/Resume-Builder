@@ -44,49 +44,48 @@ export default function Template5({ data }: Template5Props) {
           </div>
         </div>
 
-        {/* Skills */}
-               {(
-          (data.skills.languages && data.skills.languages.length > 0) ||
-          (data.skills.tools && data.skills.tools.length > 0) ||
-          (data.skills.frameworks && data.skills.frameworks.length > 0)
-        ) && (
-          <div className="mb-8 flex-1">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-cyan-200 mb-3">Skills</h3>
-            <div className="space-y-4 text-xs">
-              {data.skills.languages?.length > 0 && (
-                <div>
-                  <h4 className="font-semibold mb-1">Languages</h4>
-                  <div className="flex flex-wrap gap-1.5">
-                    {data.skills.languages.map((skill, i) => (
-                      <span key={i} className="bg-cyan-800 px-2 py-1 rounded text-xs">{skill}</span>
-                    ))}
-                  </div>
-                </div>
-              )}
-              {data.skills.frameworks?.length > 0 && (
-                <div>
-                  <h4 className="font-semibold mb-1">Frameworks</h4>
-                  <div className="flex flex-wrap gap-1.5">
-                    {data.skills.frameworks.map((skill, i) => (
-                      <span key={i} className="bg-cyan-800 px-2 py-1 rounded text-xs">{skill}</span>
-                    ))}
-                  </div>
-                </div>
-              )}
-              {data.skills.tools?.length > 0 && (
-                <div>
-                  <h4 className="font-semibold mb-1">Tools</h4>
-                  <div className="flex flex-wrap gap-1.5">
-                    {data.skills.tools.map((skill, i) => (
-                      <span key={i} className="bg-cyan-800 px-2 py-1 rounded text-xs">{skill}</span>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
+ {/* Technical Skills */}
+{(() => {
+  const getSkillString = (skill: any): string => {
+    if (typeof skill === 'string') return skill;
+    if (Array.isArray(skill)) return (skill as string[]).join(', ');
+    return '';
+  };
+  
+  const languages = getSkillString(data.skills.languages);
+  const frameworks = getSkillString(data.skills.frameworks);
+  const tools = getSkillString(data.skills.tools);
+  
+  const hasSkills = languages.trim() !== '' || frameworks.trim() !== '' || tools.trim() !== '';
+  
+  return hasSkills && (
+    <section className="mb-8">
+      <h2 className="text-lg font-bold uppercase border-b-2 border-black pb-2 mb-3">
+        Technical Skills
+      </h2>
+
+      <div className="text-sm space-y-1">
+        {languages.trim() !== '' && (
+          <p>
+            <span className="font-bold">Languages:</span> {languages}
+          </p>
         )}
 
+        {frameworks.trim() !== '' && (
+          <p>
+            <span className="font-bold">Frameworks:</span> {frameworks}
+          </p>
+        )}
+
+        {tools.trim() !== '' && (
+          <p>
+            <span className="font-bold">Developer Tools:</span> {tools}
+          </p>
+        )}
+      </div>
+    </section>
+  );
+})()}
         {/* Coursework */}
         {data.coursework?.length > 0 && data.coursework.some(c => c?.trim()) && (
           <div>

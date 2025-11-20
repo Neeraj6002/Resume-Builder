@@ -546,47 +546,69 @@ export default function Builder() {
           </div>
         );
 
-      case 5:
-        return (
-          <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-foreground">Skills</h2>
-            <div className="grid grid-cols-1 gap-4">
-              <div>
-                <Label>Programming Languages</Label>
-                <Input
-                  value={(resumeData.skills.languages || []).join(', ')}
-                  onChange={(e) => setResumeData({
-                    ...resumeData,
-                    skills: { ...resumeData.skills, languages: e.target.value.split(',').map(s => s.trim()).filter(Boolean) }
-                  })}
-                  placeholder="JavaScript, Python, Java"
-                />
-              </div>
-              <div>
-                <Label>Frameworks</Label>
-                <Input
-                  value={(resumeData.skills.frameworks || []).join(', ')}
-                  onChange={(e) => setResumeData({
-                    ...resumeData,
-                    skills: { ...resumeData.skills, frameworks: e.target.value.split(',').map(s => s.trim()).filter(Boolean) }
-                  })}
-                  placeholder="React, Node.js, Django"
-                />
-              </div>
-              <div>
-                <Label>Tools</Label>
-                <Input
-                  value={(resumeData.skills.tools || []).join(', ')}
-                  onChange={(e) => setResumeData({
-                    ...resumeData,
-                    skills: { ...resumeData.skills, tools: e.target.value.split(',').map(s => s.trim()).filter(Boolean) }
-                  })}
-                  placeholder="Git, Docker, AWS"
-                />
-              </div>
-            </div>
-          </div>
-        );
+// Replace your case 5 in the Builder.tsx file with this:
+
+// Replace your case 5 in the Builder.tsx file with this:
+
+case 5:
+  return (
+    <div className="space-y-6">
+      <h2 className="text-2xl font-bold text-foreground">Skills</h2>
+      <div className="grid grid-cols-1 gap-4">
+        <div>
+          <Label>Programming Languages</Label>
+          <Input
+            value={
+              typeof resumeData.skills.languages === 'string' 
+                ? resumeData.skills.languages 
+                : Array.isArray(resumeData.skills.languages) 
+                  ? (resumeData.skills.languages as string[]).join(', ') 
+                  : ''
+            }
+            onChange={(e) => setResumeData({
+              ...resumeData,
+              skills: { ...resumeData.skills, languages: e.target.value }
+            })}
+            placeholder="JavaScript, Python, Java"
+          />
+        </div>
+        <div>
+          <Label>Frameworks</Label>
+          <Input
+            value={
+              typeof resumeData.skills.frameworks === 'string' 
+                ? resumeData.skills.frameworks 
+                : Array.isArray(resumeData.skills.frameworks) 
+                  ? (resumeData.skills.frameworks as string[]).join(', ') 
+                  : ''
+            }
+            onChange={(e) => setResumeData({
+              ...resumeData,
+              skills: { ...resumeData.skills, frameworks: e.target.value }
+            })}
+            placeholder="React, Node.js, Django"
+          />
+        </div>
+        <div>
+          <Label>Tools</Label>
+          <Input
+            value={
+              typeof resumeData.skills.tools === 'string' 
+                ? resumeData.skills.tools 
+                : Array.isArray(resumeData.skills.tools) 
+                  ? (resumeData.skills.tools as string[]).join(', ') 
+                  : ''
+            }
+            onChange={(e) => setResumeData({
+              ...resumeData,
+              skills: { ...resumeData.skills, tools: e.target.value }
+            })}
+            placeholder="Git, Docker, AWS"
+          />
+        </div>
+      </div>
+    </div>
+  );
 
       case 6:
         return (

@@ -104,39 +104,48 @@ export default function Template3({ data }: Template3Props) {
           </section>
         )}
 
-        {/* Skills */}
-        {(
-          (data.skills.languages && data.skills.languages.length > 0) ||
-          (data.skills.tools && data.skills.tools.length > 0) ||
-          (data.skills.frameworks && data.skills.frameworks.length > 0)
-        ) && (
-          <section className="mb-8">
-            <h2 className="text-xl font-bold text-blue-900 mb-4 pb-2 border-b-2 border-blue-900">
-              CORE COMPETENCIES
-            </h2>
-            <div className="grid grid-cols-2 gap-4">
-              {data.skills.languages?.length > 0 && (
-                <div className="bg-gray-50 p-3 rounded">
-                  <h4 className="font-bold text-xs mb-1 text-blue-900">LANGUAGES</h4>
-                  <p className="text-xs">{data.skills.languages.join(' • ')}</p>
-                </div>
-              )}
-              {data.skills.frameworks?.length > 0 && (
-                <div className="bg-gray-50 p-3 rounded">
-                  <h4 className="font-bold text-xs mb-1 text-blue-900">FRAMEWORKS</h4>
-                  <p className="text-xs">{data.skills.frameworks.join(' • ')}</p>
-                </div>
-              )}
-              {data.skills.tools?.length > 0 && (
-                <div className="bg-gray-50 p-3 rounded">
-                  <h4 className="font-bold text-xs mb-1 text-blue-900">TOOLS</h4>
-                  <p className="text-xs">{data.skills.tools.join(' • ')}</p>
-                </div>
-              )}
-            </div>
-          </section>
+ {/* Technical Skills */}
+{(() => {
+  const getSkillString = (skill: any): string => {
+    if (typeof skill === 'string') return skill;
+    if (Array.isArray(skill)) return (skill as string[]).join(', ');
+    return '';
+  };
+  
+  const languages = getSkillString(data.skills.languages);
+  const frameworks = getSkillString(data.skills.frameworks);
+  const tools = getSkillString(data.skills.tools);
+  
+  const hasSkills = languages.trim() !== '' || frameworks.trim() !== '' || tools.trim() !== '';
+  
+  return hasSkills && (
+    <section className="mb-8">
+      <h2 className="text-lg font-bold uppercase border-b-2 border-black pb-2 mb-3">
+        Technical Skills
+      </h2>
+
+      <div className="text-sm space-y-1">
+        {languages.trim() !== '' && (
+          <p>
+            <span className="font-bold">Languages:</span> {languages}
+          </p>
         )}
 
+        {frameworks.trim() !== '' && (
+          <p>
+            <span className="font-bold">Frameworks:</span> {frameworks}
+          </p>
+        )}
+
+        {tools.trim() !== '' && (
+          <p>
+            <span className="font-bold">Developer Tools:</span> {tools}
+          </p>
+        )}
+      </div>
+    </section>
+  );
+})()}
         {/* Projects */}
         {data.projects.length > 0 && (
           <section>

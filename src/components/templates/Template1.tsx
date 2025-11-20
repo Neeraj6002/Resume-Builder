@@ -4,6 +4,7 @@ interface Template1Props {
   data: ResumeData;
 }
 
+
 export default function Template1({ data }: Template1Props) {
   const formatDate = (date: any, isPresent: boolean) => {
     if (isPresent) return 'Present';
@@ -110,27 +111,52 @@ export default function Template1({ data }: Template1Props) {
         </section>
       )}
 
-      {/* Technical Skills */}
-        {(
-          (data.skills.languages && data.skills.languages.length > 0) ||
-          (data.skills.tools && data.skills.tools.length > 0) ||
-          (data.skills.frameworks && data.skills.frameworks.length > 0)
-        ) && (
-        <section className="mb-8">
-          <h2 className="text-lg font-bold uppercase border-b-2 border-black pb-2 mb-3">Technical Skills</h2>
-          <div className="text-sm space-y-1">
-            {data.skills.languages?.length > 0 && (
-              <p><span className="font-bold">Languages:</span> {data.skills.languages.join(', ')}</p>
-            )}
-            {data.skills.frameworks?.length > 0 && (
-              <p><span className="font-bold">Frameworks:</span> {data.skills.frameworks.join(', ')}</p>
-            )}
-            {data.skills.tools?.length > 0 && (
-              <p><span className="font-bold">Developer Tools:</span> {data.skills.tools.join(', ')}</p>
-            )}
-          </div>
-        </section>
-      )}
+
+
+{/* Technical Skills */}
+{(() => {
+  const getSkillString = (skill: any): string => {
+    if (typeof skill === 'string') return skill;
+    if (Array.isArray(skill)) return (skill as string[]).join(', ');
+    return '';
+  };
+  
+  const languages = getSkillString(data.skills.languages);
+  const frameworks = getSkillString(data.skills.frameworks);
+  const tools = getSkillString(data.skills.tools);
+  
+  const hasSkills = languages.trim() !== '' || frameworks.trim() !== '' || tools.trim() !== '';
+  
+  return hasSkills && (
+    <section className="mb-8">
+      <h2 className="text-lg font-bold uppercase border-b-2 border-black pb-2 mb-3">
+        Technical Skills
+      </h2>
+
+      <div className="text-sm space-y-1">
+        {languages.trim() !== '' && (
+          <p>
+            <span className="font-bold">Languages:</span> {languages}
+          </p>
+        )}
+
+        {frameworks.trim() !== '' && (
+          <p>
+            <span className="font-bold">Frameworks:</span> {frameworks}
+          </p>
+        )}
+
+        {tools.trim() !== '' && (
+          <p>
+            <span className="font-bold">Developer Tools:</span> {tools}
+          </p>
+        )}
+      </div>
+    </section>
+  );
+})()}
+
+
 
       {/* Projects */}
       {data.projects.length > 0 && (
