@@ -41,20 +41,23 @@ const sampleData: ResumeData = {
     isPresent: true,
     description: ['Led development of scalable web applications', 'Mentored team of 5 junior engineers'],
   }],
-  skills: {
-    languages: ['JavaScript', 'Python', 'TypeScript'],
-    frameworks: ['React', 'Node.js', 'Django'],
-    tools: ['Git', 'Docker', 'AWS'],
-    other: [],
-  },
-  projects: [{
-    id: '1',
-    title: 'E-commerce Platform',
-    description: 'Built a full-stack e-commerce platform using React and Node.js',
-    technologies: ['React', 'Node.js', 'MongoDB'],
-  }],
-  certifications: ['AWS Certified Developer'],
-  coursework: ['Data Structures', 'Algorithms', 'Database Systems'],
+skills: {
+  languages: 'JavaScript, Python, TypeScript',
+  frameworks: 'React, Node.js, Django',
+  tools: 'Git, Docker, AWS',
+  other: '',
+},
+
+projects: [{
+  id: '1',
+  title: 'E-commerce Platform',
+  description: 'Built a full-stack e-commerce platform using React and Node.js',
+  technologies: ['React, Node.js, MongoDB'],
+}],
+
+certifications: 'AWS Certified Developer',
+
+coursework: 'Data Structures, Algorithms, Database Systems',
 };
 
 export default function Templates() {
