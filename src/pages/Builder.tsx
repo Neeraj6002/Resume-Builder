@@ -14,7 +14,7 @@ import { toast } from 'sonner';
 import Template1 from '@/components/templates/Template1';
 import Template2 from '@/components/templates/Template2';
 import Template3 from '@/components/templates/Template3';
-import Template5 from '@/components/templates/Template5';
+
 import { exportToPDF, exportToDocx, exportToPNG } from '@/utils/exportPdf';
 import logo from '@/assets/logo.png';
 
@@ -24,7 +24,7 @@ const templates = [
   { id: 'template1', name: 'Classic Professional', component: Template1 },
   { id: 'template2', name: 'Modern Minimalist', component: Template2 },
   { id: 'template3', name: 'Executive Bold', component: Template3 },
-  { id: 'template5', name: 'Two Column Pro', component: Template5 },
+
 ];
 
 export default function Builder() {
