@@ -8,7 +8,7 @@ import logo from '@/assets/logo.png';
 import Template1 from '@/components/templates/Template1';
 import Template2 from '@/components/templates/Template2';
 import Template3 from '@/components/templates/Template3';
-import Template5 from '@/components/templates/Template5';
+
 import { ResumeData } from '@/types/resume';
 
 const sampleData: ResumeData = {
@@ -86,13 +86,7 @@ export default function Templates() {
       features: ['Eye-catching', 'Leadership', 'Confident'],
       component: <Template3 data={sampleData} />
     },
-    { 
-      id: 'template5', 
-      name: 'Creative Balance', 
-      desc: 'Perfect balance of creativity and professionalism. Versatile for all roles.',
-      features: ['Versatile', 'Balanced', 'Unique'],
-      component: <Template5 data={sampleData} />
-    },
+
   ];
 
   const handleSelectTemplate = (templateId: string) => {
