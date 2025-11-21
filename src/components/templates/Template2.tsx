@@ -42,6 +42,18 @@ export default function Template2({ data }: Template2Props) {
               <span>{data.personalInfo.linkedin}</span>
             </>
           )}
+          {data.personalInfo.github && (
+            <>
+              <span>•</span>
+              <span>{data.personalInfo.github}</span>
+            </>
+          )}
+          {data.personalInfo.portfolio && (
+            <>
+              <span>•</span>
+              <span>{data.personalInfo.portfolio}</span>
+            </>
+          )}
         </div>
       </header>
 
