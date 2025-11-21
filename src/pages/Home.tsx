@@ -234,15 +234,7 @@ export default function Home() {
                   <span className="text-xs sm:text-sm">lofiidesigns@gmail.com</span>
                 </a>
                 <div className="flex gap-3 justify-center sm:justify-start">
-                  <a  
-                    href="https://www.linkedin.com/in/lofii-creations-52978a396/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-full bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground transition-all"
-                    aria-label="LinkedIn"
-                  >
-                    <Linkedin className="w-5 h-5" />
-                  </a>
+
                   
                   <a   
                     href="https://www.instagram.com/lofii_creations?igsh=MTIxMXNjNmN2Y2docQ=="
