@@ -210,7 +210,7 @@ export default function Home() {
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>
                   <a href="https://lofiicreations.netlify.app/" className="hover:text-foreground transition-colors">
-                    See more of Us
+                    Visit Us
                   </a>
                 </li>
 
