@@ -35,6 +35,8 @@ export default function Template3({ data }: Template3Props) {
           </p>
           <p>{data.personalInfo.location || 'Your Location'}</p>
           {data.personalInfo.linkedin && <p>{data.personalInfo.linkedin}</p>}
+          {data.personalInfo.github && <p>{data.personalInfo.github}</p>}
+          {data.personalInfo.portfolio && <p>{data.personalInfo.portfolio}</p>}
         </div>
       </header>
 
