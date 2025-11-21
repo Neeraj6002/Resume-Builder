@@ -41,6 +41,8 @@ export default function Template5({ data }: Template5Props) {
             <p>{data.personalInfo.phone || 'Your Phone'}</p>
             <p>{data.personalInfo.location || 'Your Location'}</p>
             {data.personalInfo.linkedin && <p className="break-all">{data.personalInfo.linkedin}</p>}
+            {data.personalInfo.github && <p className="break-all">{data.personalInfo.github}</p>}
+            {data.personalInfo.portfolio && <p className="break-all">{data.personalInfo.portfolio}</p>}
           </div>
         </div>
 
@@ -78,14 +80,6 @@ export default function Template5({ data }: Template5Props) {
             </div>
           );
         })()}
-
-        {/* Coursework */}
-        {data.coursework && data.coursework.trim() && (
-          <div>
-            <h3 className="text-sm font-bold uppercase tracking-wider text-cyan-200 mb-3">Coursework</h3>
-            <p className="text-xs leading-relaxed text-cyan-50">{data.coursework}</p>
-          </div>
-        )}
       </aside>
 
       {/* Right Main Content */}
@@ -175,6 +169,16 @@ export default function Template5({ data }: Template5Props) {
                 )}
               </div>
             ))}
+          </section>
+        )}
+
+        {/* Coursework */}
+        {data.coursework && data.coursework.trim() && (
+          <section className="mb-8">
+            <h2 className="text-xl font-bold text-cyan-900 border-b-4 border-cyan-900 pb-2 mb-4 uppercase tracking-wider">
+              Coursework
+            </h2>
+            <p className="text-sm leading-relaxed text-gray-700">{data.coursework}</p>
           </section>
         )}
 
