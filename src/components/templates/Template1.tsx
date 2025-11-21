@@ -35,6 +35,7 @@ export default function Template1({ data }: Template1Props) {
           {data.personalInfo.phone && <span>{data.personalInfo.phone}</span>}
           {data.personalInfo.email && <span>{data.personalInfo.email}</span>}
           {data.personalInfo.linkedin && <span>{data.personalInfo.linkedin}</span>}
+          {data.personalInfo.github && <span>{data.personalInfo.github}</span>}
           {data.personalInfo.portfolio && <span>{data.personalInfo.portfolio}</span>}
         </div>
       </header>
