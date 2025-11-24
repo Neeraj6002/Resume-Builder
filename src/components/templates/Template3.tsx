@@ -185,4 +185,4 @@ export default function Template3({ data }: Template3Props) {
     </div>
   );
 }
-}
+
