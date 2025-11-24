@@ -23,20 +23,22 @@ export default function Template1({ data }: Template1Props) {
         boxSizing: 'border-box',
         display: 'flex',
         flexDirection: 'column',
+        wordWrap: 'break-word',
+        overflowWrap: 'break-word',
       }}
     >
       {/* Header */}
-      <header className="text-center border-b-4 border-black pb-5 mb-8">
-        <h1 className="text-4xl font-bold uppercase tracking-wider mb-2">
+      <header className="text-center border-b-4 border-black pb-5 mb-8" style={{ maxWidth: '100%' }}>
+        <h1 className="text-4xl font-bold uppercase tracking-wider mb-2" style={{ wordWrap: 'break-word', overflowWrap: 'break-word' }}>
           {data.personalInfo.fullName || 'Your Name'}
         </h1>
-        <div className="text-sm text-gray-700 flex flex-wrap justify-center gap-x-4 gap-y-1">
-          {data.personalInfo.location && <span>{data.personalInfo.location}</span>}
-          {data.personalInfo.phone && <span>{data.personalInfo.phone}</span>}
-          {data.personalInfo.email && <span>{data.personalInfo.email}</span>}
-          {data.personalInfo.linkedin && <span>{data.personalInfo.linkedin}</span>}
-          {data.personalInfo.github && <span>{data.personalInfo.github}</span>}
-          {data.personalInfo.portfolio && <span>{data.personalInfo.portfolio}</span>}
+        <div className="text-sm text-gray-700 flex flex-wrap justify-center gap-x-4 gap-y-1" style={{ maxWidth: '100%' }}>
+          {data.personalInfo.location && <span style={{ wordWrap: 'break-word', overflowWrap: 'break-word', wordBreak: 'break-word', maxWidth: '100%' }}>{data.personalInfo.location}</span>}
+          {data.personalInfo.phone && <span style={{ wordWrap: 'break-word', overflowWrap: 'break-word', wordBreak: 'break-word', maxWidth: '100%' }}>{data.personalInfo.phone}</span>}
+          {data.personalInfo.email && <span style={{ wordWrap: 'break-word', overflowWrap: 'break-word', wordBreak: 'break-word', maxWidth: '100%' }}>{data.personalInfo.email}</span>}
+          {data.personalInfo.linkedin && <span style={{ wordWrap: 'break-word', overflowWrap: 'break-word', wordBreak: 'break-word', maxWidth: '100%' }}>{data.personalInfo.linkedin}</span>}
+          {data.personalInfo.github && <span style={{ wordWrap: 'break-word', overflowWrap: 'break-word', wordBreak: 'break-word', maxWidth: '100%' }}>{data.personalInfo.github}</span>}
+          {data.personalInfo.portfolio && <span style={{ wordWrap: 'break-word', overflowWrap: 'break-word', wordBreak: 'break-word', maxWidth: '100%' }}>{data.personalInfo.portfolio}</span>}
         </div>
       </header>
 
@@ -44,7 +46,7 @@ export default function Template1({ data }: Template1Props) {
       {data.objective && (
         <section className="mb-8">
           <h2 className="text-lg font-bold uppercase border-b-2 border-black pb-2 mb-3">Objective</h2>
-          <p className="text-sm leading-relaxed">{data.objective}</p>
+          <p className="text-sm leading-relaxed" style={{ wordWrap: 'break-word', overflowWrap: 'break-word' }}>{data.objective}</p>
         </section>
       )}
 
@@ -55,11 +57,11 @@ export default function Template1({ data }: Template1Props) {
           {data.education.map((edu) => (
             <div key={edu.id} className="mb-5 last:mb-0">
               <div className="flex justify-between items-start gap-8">
-                <div className="flex-1">
-                  <h3 className="font-bold text-sm">{edu.institution}</h3>
-                  <p className="text-sm">{edu.degree}</p>
+                <div className="flex-1" style={{ wordWrap: 'break-word', overflowWrap: 'break-word', minWidth: 0 }}>
+                  <h3 className="font-bold text-sm" style={{ wordWrap: 'break-word', overflowWrap: 'break-word' }}>{edu.institution}</h3>
+                  <p className="text-sm" style={{ wordWrap: 'break-word', overflowWrap: 'break-word' }}>{edu.degree}</p>
                 </div>
-                <div className="text-right text-sm">
+                <div className="text-right text-sm" style={{ whiteSpace: 'nowrap' }}>
                   {edu.location && <p>{edu.location}</p>}
                   {(edu.startDate?.year || edu.isPresent) && (
                     <p>{formatDate(edu.startDate, false)} – {formatDate(edu.endDate, edu.isPresent)}</p>
@@ -75,7 +77,7 @@ export default function Template1({ data }: Template1Props) {
       {data.coursework && data.coursework.trim() && (
         <section className="mb-8">
           <h2 className="text-lg font-bold uppercase border-b-2 border-black pb-2 mb-3">Relevant Coursework</h2>
-          <p className="text-sm leading-relaxed">{data.coursework}</p>
+          <p className="text-sm leading-relaxed" style={{ wordWrap: 'break-word', overflowWrap: 'break-word' }}>{data.coursework}</p>
         </section>
       )}
 
@@ -86,11 +88,11 @@ export default function Template1({ data }: Template1Props) {
           {data.experience.map((exp) => (
             <div key={exp.id} className="mb-6 last:mb-0">
               <div className="flex justify-between items-start gap-8">
-                <div className="flex-1">
-                  <h3 className="font-bold text-sm">{exp.company}</h3>
-                  <p className="text-sm italic">{exp.title}</p>
+                <div className="flex-1" style={{ wordWrap: 'break-word', overflowWrap: 'break-word', minWidth: 0 }}>
+                  <h3 className="font-bold text-sm" style={{ wordWrap: 'break-word', overflowWrap: 'break-word' }}>{exp.company}</h3>
+                  <p className="text-sm italic" style={{ wordWrap: 'break-word', overflowWrap: 'break-word' }}>{exp.title}</p>
                 </div>
-                <div className="text-right text-sm">
+                <div className="text-right text-sm" style={{ whiteSpace: 'nowrap' }}>
                   {exp.location && <p>{exp.location}</p>}
                   {(exp.startDate?.year || exp.isPresent) && (
                     <p>{formatDate(exp.startDate, false)} – {formatDate(exp.endDate, exp.isPresent)}</p>
@@ -99,7 +101,7 @@ export default function Template1({ data }: Template1Props) {
               </div>
               <ul className="mt-2 ml-5 list-disc text-sm space-y-1">
                 {exp.description.map((desc, i) => (
-                  <li key={i}>{desc}</li>
+                  <li key={i} style={{ wordWrap: 'break-word', overflowWrap: 'break-word' }}>{desc}</li>
                 ))}
               </ul>
             </div>
@@ -122,17 +124,17 @@ export default function Template1({ data }: Template1Props) {
             </h2>
             <div className="text-sm space-y-1">
               {languages !== '' && (
-                <p>
+                <p style={{ wordWrap: 'break-word', overflowWrap: 'break-word' }}>
                   <span className="font-bold">Languages:</span> {languages}
                 </p>
               )}
               {frameworks !== '' && (
-                <p>
+                <p style={{ wordWrap: 'break-word', overflowWrap: 'break-word' }}>
                   <span className="font-bold">Frameworks:</span> {frameworks}
                 </p>
               )}
               {tools !== '' && (
-                <p>
+                <p style={{ wordWrap: 'break-word', overflowWrap: 'break-word' }}>
                   <span className="font-bold">Developer Tools:</span> {tools}
                 </p>
               )}
@@ -147,10 +149,10 @@ export default function Template1({ data }: Template1Props) {
           <h2 className="text-lg font-bold uppercase border-b-2 border-black pb-2 mb-3">Projects</h2>
           {data.projects.map((project) => (
             <div key={project.id} className="mb-4 last:mb-0">
-              <h3 className="font-bold text-sm">• {project.title}</h3>
-              <p className="text-sm ml-6 leading-relaxed">{project.description}</p>
+              <h3 className="font-bold text-sm" style={{ wordWrap: 'break-word', overflowWrap: 'break-word' }}>• {project.title}</h3>
+              <p className="text-sm ml-6 leading-relaxed" style={{ wordWrap: 'break-word', overflowWrap: 'break-word' }}>{project.description}</p>
               {project.technologies?.length > 0 && (
-                <p className="text-xs ml-6 text-gray-600 mt-1">
+                <p className="text-xs ml-6 text-gray-600 mt-1" style={{ wordWrap: 'break-word', overflowWrap: 'break-word' }}>
                   {project.technologies.join(' • ')}
                 </p>
               )}
@@ -163,7 +165,7 @@ export default function Template1({ data }: Template1Props) {
       {data.certifications && data.certifications.trim() && (
         <section>
           <h2 className="text-lg font-bold uppercase border-b-2 border-black pb-2 mb-3">Certifications</h2>
-          <p className="text-sm leading-relaxed">{data.certifications}</p>
+          <p className="text-sm leading-relaxed" style={{ wordWrap: 'break-word', overflowWrap: 'break-word' }}>{data.certifications}</p>
         </section>
       )}
     </div>
